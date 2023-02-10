@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "start": "node ./build/app.js",
+    "start": "node ./build/app/app.js",
     "prisma:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "migrateandstart": "yarn prisma:deploy && yarn start"
