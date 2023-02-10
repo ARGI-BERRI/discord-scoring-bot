@@ -1,0 +1,33 @@
+version: "3.5"
+
+services:
+  dsb-bot:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: "dsb-bot"
+    restart: always
+    networks:
+      - default
+    depends_on:
+      dsb-db:
+        condition: service_healthy
+
+  dsb-db:
+    image: postgres:15-alpine
+    container_name: "dsb-db"
+    restart: always
+    networks:
+      - default
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./docker/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 3s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
