@@ -5,6 +5,7 @@
     "@prisma/client": "^4.10.1",
     "bufferutil": "^4.0.7",
     "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
     "prisma": "^4.10.1",
     "typescript": "^4.9.5",
     "utf-8-validate": "^6.0.2"
