@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Client, Events, GatewayIntentBits } from "discord.js";
 import { config } from "dotenv";
+import { commandRepository } from "../commands/CommandRepository.js";
 
 config();
 
@@ -17,7 +18,18 @@ client.on(Events.InteractionCreate, (interaction) => {
     return;
   }
 
-  console.log(interaction);
+  const command = commandRepository.get(interaction.commandName);
+
+  if (!command) {
+    interaction.reply({
+      content: "WTF?",
+      ephemeral: true,
+    });
+
+    return;
+  }
+
+  command.execute(interaction);
 });
 
 client.login(TOKEN);
