@@ -23,8 +23,9 @@ COPY --from=builder \
 RUN yarn install --frozen-lockfile --production && yarn cache clean
 
 # Prisma setup
-COPY .env ./
 COPY prisma/ ./
 RUN yarn prisma:generate
+
+COPY .env ./
 
 CMD [ "yarn", "migrateandstart" ]
