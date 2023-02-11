@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Client, Events, GatewayIntentBits } from "discord.js";
+import { config } from "dotenv";
 
-require("dotenv").config();
+config();
 
 const TOKEN = process.env["DISCORD_TOKEN"];
 const prisma = new PrismaClient();

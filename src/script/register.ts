@@ -1,7 +1,8 @@
 import { REST, Routes } from "discord.js";
+import { config } from "dotenv";
 import { commands } from "../commands/commands.js";
 
-require("dotenv").config();
+config();
 
 const TOKEN = process.env["DISCORD_TOKEN"] || "";
 const CLIENT_ID = process.env["DISCORD_CLIENT_ID"] || "";
