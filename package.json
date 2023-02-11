@@ -15,7 +15,8 @@
     "start": "node ./build/app/app.js",
     "prisma:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
-    "migrateandstart": "yarn prisma:deploy && yarn start"
+    "migrateandstart": "yarn prisma:deploy && yarn start",
+    "register": "yarn build && node ./build/script/register.js"
   },
   "version": "1.0.0",
   "main": "index.js",
