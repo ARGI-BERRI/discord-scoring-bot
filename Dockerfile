@@ -1,14 +1,15 @@
 FROM node:lts-slim as builder
-
+ENV NODE_ENV production
 WORKDIR /opt/builder
 
 COPY package.json ./
-RUN yarn install
+RUN yarn install --production
 
 COPY . .
 RUN yarn build
 
 FROM node:lts-slim as runner
+ENV NODE_ENV production
 WORKDIR /opt/runner
 
 COPY --from=builder \
@@ -19,7 +20,6 @@ COPY --from=builder \
 COPY --from=builder \
     /opt/builder/build ./build
 
-ENV NODE_ENV production
 RUN yarn install --frozen-lockfile --production && yarn cache clean
 
 # Prisma setup
