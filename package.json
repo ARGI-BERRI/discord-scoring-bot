@@ -16,7 +16,14 @@
     "prisma:deploy": "prisma migrate deploy",
     "prisma:generate": "prisma generate",
     "migrateandstart": "yarn prisma:deploy && yarn start",
-    "register": "yarn build && node ./build/script/register.js"
+    "register": "yarn build && node ./build/script/register.js",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "version": "1.0.0",
   "main": "index.js",
@@ -28,6 +35,8 @@
     "@typescript-eslint/parser": "^5.51.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
     "prettier": "^2.8.4"
   }
 }
