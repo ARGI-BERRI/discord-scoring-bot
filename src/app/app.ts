@@ -13,7 +13,7 @@ client.once(Events.ClientReady, (c) => {
   console.log(`DSB is ready. Logged in as ${c.user.tag}`);
 });
 
-client.on(Events.InteractionCreate, (interaction) => {
+client.on(Events.InteractionCreate, async (interaction) => {
   if (!interaction.isChatInputCommand()) {
     return;
   }
@@ -21,7 +21,7 @@ client.on(Events.InteractionCreate, (interaction) => {
   const command = commandRepository.get(interaction.commandName);
 
   if (!command) {
-    interaction.reply({
+    await interaction.reply({
       content: "WTF?",
       ephemeral: true,
     });
@@ -29,9 +29,9 @@ client.on(Events.InteractionCreate, (interaction) => {
     return;
   }
 
-  command.execute(interaction);
+  await command.execute(interaction);
 });
 
-client.login(TOKEN);
+await client.login(TOKEN);
 
 await prisma.$disconnect();

@@ -6,7 +6,7 @@ const commandsList = [Ping];
 /**
  * `commandRepository` contains available commands.
  */
-export const commandRepository = new Map<String, Command>(
+export const commandRepository = new Map<string, Command>(
   commandsList.map((c) => {
     const pair: [string, Command] = [c.data.name, c];
     return pair;
