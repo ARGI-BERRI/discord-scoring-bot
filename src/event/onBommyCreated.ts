@@ -12,7 +12,6 @@ export const onBommyCreated: DSBEvent = {
     }
 
     const image = message.attachments.first();
-    const score = message.content.split(" ")[1];
 
     if (!image) {
       await message.reply("No bommizable image attached! Aborting...");
@@ -21,10 +20,12 @@ export const onBommyCreated: DSBEvent = {
 
     if (!contentType.includes(image.contentType || "")) {
       await message.reply(
-        `Unsupported content type! \`${image.contentType || "unknown"}\` is not allowed. Aborting...`
+        `Unsupported content type! \`${image.contentType || "unknown"}\` is not supported. Aborting...`
       );
       return;
     }
+
+    const score = message.content.split(" ")[1];
 
     if (!score) {
       await message.reply("No bommy score attached! Aborting...");
