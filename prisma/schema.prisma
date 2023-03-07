@@ -9,7 +9,7 @@ datasource db {
 
 model User {
   id        Int     @id @default(autoincrement())
-  discordId Int     @unique
+  discordId BigInt  @unique
   username  String
   Score     Score[]
 }
@@ -18,7 +18,7 @@ model Score {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   user      User     @relation(fields: [discordId], references: [discordId])
-  discordId Int
+  discordId BigInt
   scorename String
   score     Int
 }
